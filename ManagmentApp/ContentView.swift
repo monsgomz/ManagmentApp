@@ -11,10 +11,12 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Home()
+				.background(.BG)
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
 				.preferredColorScheme(.light)
+				
         }
-        .padding()
+//        .padding()
     }
 }
 

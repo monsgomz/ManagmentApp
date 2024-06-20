@@ -10,19 +10,32 @@ import SwiftUI
 struct Home: View {
 	///Task manager Properties
 	@State private var currentDate: Date = .init()
-    var body: some View {
+	@State private var weekSlider: [[Date.weekDay]] = []
+	@State private var currentWeekDayIndex: Int = 0
+	
+	var body: some View {
 		VStack(alignment: .leading, spacing: 0, content: {
 			HeaderView()
+		})
+		.vSpacing(.top)
+		.onAppear(perform: {
+			if weekSlider.isEmpty {
+				let currentWeek = Date().fetchWeek()
+				weekSlider.append(currentWeek)
+			}
 		})
 			
 		
     }
 	
-	//MARK: Te permite crear vistas personalizadas de vistas pequeñas
+	
+	
+	//MARK: Header
+	//Te permite crear vistas personalizadas de vistas pequeñas
 	@ViewBuilder
 	func HeaderView() -> some View {
-		VStack(alignment: .leading, spacing: 0){
-			HStack{
+		VStack(alignment: .leading, spacing: 6){
+			HStack(spacing: 5){
 				Text(currentDate.format("MMMM"))
 					.foregroundStyle(.ultraViolet)
 				
@@ -31,6 +44,64 @@ struct Home: View {
 			}
 			.font(.title.bold())
 			
+			Text(currentDate.formatted(date: .complete, time: .omitted))
+				.font(.callout)
+				.fontWeight(.semibold)
+				.textScale(.secondary)
+				.foregroundStyle(.gray)
+			
+			//MARK: Week Slider
+			TabView(selection: $currentWeekDayIndex,
+					content:  {
+				ForEach(weekSlider.indices, id: \.self) { index in
+					let week = weekSlider[index]
+					WeekView(week)
+						.tag(index)
+				}
+			})
+			.tabViewStyle(.page(indexDisplayMode: .never))
+			.frame(height: 90)
+				
+			
+		}
+		.hSpacing(.leading)
+		.overlay(alignment: .topTrailing, content: {
+			Button(action: {}, label: {
+				Image("profile")
+					.resizable()
+					.aspectRatio(contentMode: .fit)
+					.frame(width: 45, height: 45, alignment: .center)
+					.clipShape(Circle())
+			})
+		})
+		
+		
+		.padding(15)
+		.hSpacing(.leading)
+		.background(.white)
+	}
+	
+	//MARK: Week view
+	@ViewBuilder
+	func WeekView(_ week: [Date.weekDay]) -> some View {
+		HStack(spacing: 0){
+			ForEach(week) { day in
+				VStack(spacing: 0){
+					Text(day.date.format("E"))
+						.font(.callout)
+						.fontWeight(.medium)
+						.textScale(.secondary)
+						.foregroundStyle(.gray)
+					
+					Text(day.date.format("dd"))
+						.font(.callout)
+						.fontWeight(.medium)
+						.textScale(.secondary)
+						.foregroundStyle(.gray)
+				}
+				.hSpacing(.center)
+				
+			}
 		}
 	}
 }

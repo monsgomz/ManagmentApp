@@ -10,7 +10,7 @@ import SwiftUI
 extension View {
 	///Custom spacers
 	@ViewBuilder
-	func hSpacing(_ alignment: Alignment) -> some View{
+	func hSpacing(_ alignment: Alignment) -> some View {
 		self.frame(maxWidth: .infinity, alignment: alignment)
 	}
 	
