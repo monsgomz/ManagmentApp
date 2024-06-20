@@ -11,6 +11,10 @@
 		C25644E92C23719E0099B916 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25644E82C23719E0099B916 /* ContentView.swift */; };
 		C25644EB2C2371A00099B916 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C25644EA2C2371A00099B916 /* Assets.xcassets */; };
 		C25644EE2C2371A00099B916 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C25644ED2C2371A00099B916 /* Preview Assets.xcassets */; };
+		C25644F82C2382160099B916 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25644F72C2382150099B916 /* Task.swift */; };
+		C271AA102C238D25004A6B12 /* View+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C271AA0F2C238D25004A6B12 /* View+extension.swift */; };
+		C271AA122C238D39004A6B12 /* Delete+estension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C271AA112C238D39004A6B12 /* Delete+estension.swift */; };
+		C271AA142C238E71004A6B12 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = C271AA132C238E71004A6B12 /* Home.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		C25644E82C23719E0099B916 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C25644EA2C2371A00099B916 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C25644ED2C2371A00099B916 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C25644F72C2382150099B916 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		C271AA0F2C238D25004A6B12 /* View+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+extension.swift"; sourceTree = "<group>"; };
+		C271AA112C238D39004A6B12 /* Delete+estension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete+estension.swift"; sourceTree = "<group>"; };
+		C271AA132C238E71004A6B12 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +59,9 @@
 		C25644E52C23719E0099B916 /* ManagmentApp */ = {
 			isa = PBXGroup;
 			children = (
+				C25644F62C2380590099B916 /* View */,
+				C25644F52C2380520099B916 /* ModelView */,
+				C25644F42C23804B0099B916 /* Model */,
 				C25644E62C23719E0099B916 /* ManagmentAppApp.swift */,
 				C25644E82C23719E0099B916 /* ContentView.swift */,
 				C25644EA2C2371A00099B916 /* Assets.xcassets */,
@@ -65,6 +76,39 @@
 				C25644ED2C2371A00099B916 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C25644F42C23804B0099B916 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C25644F72C2382150099B916 /* Task.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C25644F52C2380520099B916 /* ModelView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ModelView;
+			sourceTree = "<group>";
+		};
+		C25644F62C2380590099B916 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C271AA0E2C238D00004A6B12 /* Helpers */,
+				C271AA132C238E71004A6B12 /* Home.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C271AA0E2C238D00004A6B12 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C271AA0F2C238D25004A6B12 /* View+extension.swift */,
+				C271AA112C238D39004A6B12 /* Delete+estension.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +182,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C25644E92C23719E0099B916 /* ContentView.swift in Sources */,
+				C25644F82C2382160099B916 /* Task.swift in Sources */,
+				C271AA102C238D25004A6B12 /* View+extension.swift in Sources */,
 				C25644E72C23719E0099B916 /* ManagmentAppApp.swift in Sources */,
+				C271AA142C238E71004A6B12 /* Home.swift in Sources */,
+				C271AA122C238D39004A6B12 /* Delete+estension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
