@@ -97,9 +97,36 @@ struct Home: View {
 						.font(.callout)
 						.fontWeight(.medium)
 						.textScale(.secondary)
-						.foregroundStyle(.gray)
+						.foregroundStyle(isSameDate(date1: day.date, date2: currentDate) ? .white : .gray)
+						.frame(width: 35, height: 35)
+						.background(content: {
+							if isSameDate(date1: day.date, date2: currentDate){
+								Circle()
+									.fill(.ultraViolet)
+							}
+							
+							///Indicador para saber el dia actual
+							if day.date.isToday {
+								Circle()
+									.fill(.ultraViolet)
+									.frame(width: 5, height: 5)
+									.vSpacing(.bottom)
+									.offset(y: 12)
+							}
+							
+							
+						})
+						.background(.white.shadow(.drop(radius: 1)), in: .circle)
+						.padding(5)
 				}
 				.hSpacing(.center)
+				.contentShape(.rect)
+				.onTapGesture {
+					///Cuando das clic y cambias de dia
+					withAnimation(.snappy){
+						currentDate = day.date
+					}
+				}
 				
 			}
 		}

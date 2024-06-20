@@ -17,8 +17,13 @@ extension Date {
 		return formatter.string(from: self)
 	}
 	
+	///Checking wheter the Date is Today
+	var isToday: Bool {
+		return Calendar.current.isDateInToday(self)
+	}
+	
 	//TODO: Revisar este codigo, estudiarlo
- 	///Fetching week based on given date
+ 	///Fetching week based on given date, se crea la semana completa
 	func fetchWeek(_ date : Date = .init()) -> [weekDay] {
 		let calendar = Calendar.current
 		let startOfDate = calendar.startOfDay(for: date)
@@ -29,7 +34,7 @@ extension Date {
 			return []
 		}
 		
-		///Iterating to get the full week
+		///Iterating to get the full week, se guarda en week
 		(0..<7).forEach { index in
 			if let weekDay = calendar.date(byAdding: .day, value: index, to: startOfWeek){
 				week.append(.init(date: weekDay))
