@@ -46,6 +46,28 @@ extension Date {
 		
 	}
 	
+	///Create Next week, based on the last week
+	func nextWeek() -> [weekDay] {
+		let calendar = Calendar.current //inicializa el calendario
+		let startOfLastDate = calendar.startOfDay(for: self) //toma la ultima semana
+		guard let nextDate = calendar.date(byAdding: .day, value: 1, to: startOfLastDate) else {
+			return []
+		}
+		
+		return fetchWeek(nextDate)
+	}
+	
+	///Create previus week, based on the first week
+	func previousWeek() -> [weekDay] {
+		let calendar = Calendar.current //inicializa el calendario
+		let startOfFirstDate = calendar.startOfDay(for: self) //toma la ultima semana
+		guard let previousDate = calendar.date(byAdding: .day, value: -1, to: startOfFirstDate) else {
+			return []
+		}
+		
+		return fetchWeek(previousDate)
+	}
+	
 	struct weekDay: Identifiable {
 		var id: UUID = .init()
 		var date: Date

@@ -3,7 +3,9 @@
 //  ManagmentApp
 //
 //  Created by Montserrat Gomez on 2024-06-19.
-//
+/* Cuadno se genera la primera semana, se hace un fetch de una previa y de una siguiente, cuando se alcancen estas, se vuelve a hacer fetch
+ 
+ */
 
 import SwiftUI
 
@@ -12,6 +14,11 @@ struct Home: View {
 	@State private var currentDate: Date = .init()
 	@State private var weekSlider: [[Date.weekDay]] = []
 	@State private var currentWeekDayIndex: Int = 0
+	@State private var createWeek: Bool = false
+	
+	
+	///Animation namespace
+	@Namespace private var animation //MARK: Es normalmente usado cuando se quieren crear animaciones entre vistas o cambios de estados
 	
 	var body: some View {
 		VStack(alignment: .leading, spacing: 0, content: {
@@ -21,13 +28,21 @@ struct Home: View {
 		.onAppear(perform: {
 			if weekSlider.isEmpty {
 				let currentWeek = Date().fetchWeek()
+				
 				weekSlider.append(currentWeek)
+				
+				if let firstDate = currentWeek.first?.date {
+					weekSlider.append(firstDate.previousWeek())
+				}
+				
+				if let lastDate = currentWeek.last?.date{
+					weekSlider.append(lastDate.nextWeek())
+				}
 			}
 		})
 			
 		
     }
-	
 	
 	
 	//MARK: Header
@@ -56,9 +71,11 @@ struct Home: View {
 				ForEach(weekSlider.indices, id: \.self) { index in
 					let week = weekSlider[index]
 					WeekView(week)
+						.padding(.horizontal, 10)
 						.tag(index)
 				}
 			})
+			.padding(.horizontal, -15)
 			.tabViewStyle(.page(indexDisplayMode: .never))
 			.frame(height: 90)
 				
@@ -74,11 +91,14 @@ struct Home: View {
 					.clipShape(Circle())
 			})
 		})
-		
-		
 		.padding(15)
 		.hSpacing(.leading)
 		.background(.white)
+		.onChange(of: currentWeekDayIndex, initial: false) { oldValuse, newValue in
+			///Para crear nueva semana cuando alcanza la ultima o la previa
+			//MARK: para preservar la memoria, despues de hacer el nuevo fetching, se eliminará el ultimo array, asi siempre seran 3 elementos
+			
+		}
 	}
 	
 	//MARK: Week view
@@ -103,6 +123,7 @@ struct Home: View {
 							if isSameDate(date1: day.date, date2: currentDate){
 								Circle()
 									.fill(.ultraViolet)
+									.matchedGeometryEffect(id: "TABINDICATOR", in: animation)
 							}
 							
 							///Indicador para saber el dia actual
