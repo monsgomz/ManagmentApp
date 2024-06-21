@@ -15,6 +15,7 @@
 		C271AA102C238D25004A6B12 /* View+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C271AA0F2C238D25004A6B12 /* View+extension.swift */; };
 		C271AA122C238D39004A6B12 /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C271AA112C238D39004A6B12 /* Date+extension.swift */; };
 		C271AA142C238E71004A6B12 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = C271AA132C238E71004A6B12 /* Home.swift */; };
+		C271AA162C261D1E004A6B12 /* OffsetKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C271AA152C261D1E004A6B12 /* OffsetKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		C271AA0F2C238D25004A6B12 /* View+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+extension.swift"; sourceTree = "<group>"; };
 		C271AA112C238D39004A6B12 /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
 		C271AA132C238E71004A6B12 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		C271AA152C261D1E004A6B12 /* OffsetKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 			children = (
 				C271AA0F2C238D25004A6B12 /* View+extension.swift */,
 				C271AA112C238D39004A6B12 /* Date+extension.swift */,
+				C271AA152C261D1E004A6B12 /* OffsetKey.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				C25644E92C23719E0099B916 /* ContentView.swift in Sources */,
 				C25644F82C2382160099B916 /* Task.swift in Sources */,
 				C271AA102C238D25004A6B12 /* View+extension.swift in Sources */,
+				C271AA162C261D1E004A6B12 /* OffsetKey.swift in Sources */,
 				C25644E72C23719E0099B916 /* ManagmentAppApp.swift in Sources */,
 				C271AA142C238E71004A6B12 /* Home.swift in Sources */,
 				C271AA122C238D39004A6B12 /* Date+extension.swift in Sources */,

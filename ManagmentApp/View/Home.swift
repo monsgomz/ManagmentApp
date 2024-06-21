@@ -29,11 +29,11 @@ struct Home: View {
 			if weekSlider.isEmpty {
 				let currentWeek = Date().fetchWeek()
 				
-				weekSlider.append(currentWeek)
-				
 				if let firstDate = currentWeek.first?.date {
 					weekSlider.append(firstDate.previousWeek())
 				}
+				
+				weekSlider.append(currentWeek)
 				
 				if let lastDate = currentWeek.last?.date{
 					weekSlider.append(lastDate.nextWeek())
@@ -97,6 +97,9 @@ struct Home: View {
 		.onChange(of: currentWeekDayIndex, initial: false) { oldValuse, newValue in
 			///Para crear nueva semana cuando alcanza la ultima o la previa
 			//MARK: para preservar la memoria, despues de hacer el nuevo fetching, se eliminará el ultimo array, asi siempre seran 3 elementos
+			if newValue == 0 || newValue == (weekSlider.count - 1) {
+				createWeek = true
+			}
 			
 		}
 	}
@@ -150,6 +153,41 @@ struct Home: View {
 				}
 				
 			}
+		}
+		.background {
+			GeometryReader {
+				let minX = $0.frame(in: .global).minX
+				
+				Color.clear
+					.preference(key: OffsetKey.self, value: minX)
+					.onPreferenceChange(OffsetKey.self) { value in
+						//para que cuando el offset termine en 15
+						if value.rounded() == 15 && createWeek {
+							paginateWeek()
+							createWeek = false
+						}
+						
+					}
+			}
+		}
+	}
+	
+	func paginateWeek() {
+		if weekSlider.indices.contains(currentWeekDayIndex) {
+			if let firstDate = weekSlider[currentWeekDayIndex].first?.date, currentWeekDayIndex == 0 {
+				//insertar la semana anterior y borrar el ultimo elemento
+				weekSlider.insert(firstDate.previousWeek(), at: 0)
+				weekSlider.removeLast()
+				currentWeekDayIndex = 1
+			}
+			
+			if let lastDate = weekSlider[currentWeekDayIndex].last?.date, currentWeekDayIndex == (weekSlider.count - 1) {
+				//insertar la nueva semana y borrar el ultimo elemento
+				weekSlider.append(lastDate.nextWeek())
+				weekSlider.removeFirst()
+				currentWeekDayIndex = weekSlider.count - 2
+			}
+			
 		}
 	}
 }
