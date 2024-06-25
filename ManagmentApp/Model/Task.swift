@@ -16,12 +16,14 @@ struct Task: Identifiable {
 	var tint: Color
 }
 
-var simpleTasks: [Task] = [
+var sampleTasks: [Task] = [
 	.init(tasktitle: "Estudiar swift", creationDate: .updateHour(-5), isCompleted: true, tint: .task1),
 	.init(tasktitle: "Salir con amigos", creationDate: .now, isCompleted: false, tint: .task2),
-	.init(tasktitle: "Hacer de comer", creationDate: .updateHour(0), isCompleted: false, tint: .task3),
+	.init(tasktitle: "Hacer de comer", creationDate: .updateHour(1), isCompleted: false, tint: .task3),
 	.init(tasktitle: "Sacar al perro", creationDate: .updateHour(-4), isCompleted: true, tint: .task4),
-	.init(tasktitle: "Leer", creationDate: .updateHour(1), isCompleted: true, tint: .task5)
+	.init(tasktitle: "Leer", creationDate: .updateHour(-1), isCompleted: true, tint: .task2),
+	.init(tasktitle: "Limpiar", creationDate: .updateHour(-3), isCompleted: false, tint: .task4),
+	.init(tasktitle: "Junta", creationDate: .updateHour(2), isCompleted: false, tint: .task5)
 ]
 
 //MARK: extension para actualizar la fecha

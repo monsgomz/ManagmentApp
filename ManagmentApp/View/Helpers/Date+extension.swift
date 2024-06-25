@@ -22,6 +22,14 @@ extension Date {
 		return Calendar.current.isDateInToday(self)
 	}
 	
+	var isSameHour: Bool {
+		return Calendar.current.compare(self, to: .init(), toGranularity: .hour) == .orderedSame
+	}
+	
+	var isPastHour: Bool {
+		return Calendar.current.compare(self, to: .init(), toGranularity: .hour) == .orderedAscending
+	}
+	
 	//TODO: Revisar este codigo, estudiarlo
  	///Fetching week based on given date, se crea la semana completa
 	func fetchWeek(_ date : Date = .init()) -> [weekDay] {

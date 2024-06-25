@@ -15,6 +15,7 @@ struct Home: View {
 	@State private var weekSlider: [[Date.weekDay]] = []
 	@State private var currentWeekDayIndex: Int = 0
 	@State private var createWeek: Bool = false
+	@State private var tasks: [Task] = sampleTasks.sorted(by: {$1.creationDate > $0.creationDate}) //datos de ejemplos
 	
 	
 	///Animation namespace
@@ -23,6 +24,15 @@ struct Home: View {
 	var body: some View {
 		VStack(alignment: .leading, spacing: 0, content: {
 			HeaderView()
+			
+			///Task view
+			ScrollView(.vertical){
+				VStack{
+					TaskView()
+				}
+				.hSpacing(.center)
+				.vSpacing(.center)
+			}
 		})
 		.vSpacing(.top)
 		.onAppear(perform: {
@@ -189,6 +199,27 @@ struct Home: View {
 			}
 			
 		}
+	}
+	
+	//MARK: Task view
+	@ViewBuilder
+	func TaskView() -> some View {
+		VStack(alignment: .leading, spacing:  30){
+			ForEach($tasks) { $task in
+				TaskRowView(task: $task)
+					.background(alignment: .leading) {
+						if tasks.last?.id != task.id {
+							Rectangle()
+								.frame(width: 1)
+								.offset(x: 8)
+								.padding(.bottom, -35)
+						}
+					}
+				
+			}
+		}
+		.padding([.vertical, .leading], 15)
+		.padding(.top, 15)
 	}
 }
 
