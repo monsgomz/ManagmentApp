@@ -23,7 +23,7 @@ struct TaskRowView: View {
 						.blendMode(.destinationOver)
 						.onTapGesture {
 							withAnimation(.snappy) {
-								task.isCompleted.toggle() 
+								task.isCompleted.toggle()  
 							}
 						}
 				}
