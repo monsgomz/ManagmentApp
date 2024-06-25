@@ -17,6 +17,16 @@ struct TaskRowView: View {
 				.frame(width: 10, height: 10, alignment: .center)
 				.padding(4)
 				.background(.white.shadow(.drop(color:.black.opacity(0.1) ,radius: 3)), in: .circle)
+				.overlay {
+					Circle()
+						.frame(width: 50, height: 50, alignment: .center)
+						.blendMode(.destinationOver)
+						.onTapGesture {
+							withAnimation(.snappy) {
+								task.isCompleted.toggle() 
+							}
+						}
+				}
 			
 			VStack(alignment: .leading, spacing: 0){
 				Text(task.tasktitle)

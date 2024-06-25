@@ -16,7 +16,7 @@ struct Home: View {
 	@State private var currentWeekDayIndex: Int = 0
 	@State private var createWeek: Bool = false
 	@State private var tasks: [Task] = sampleTasks.sorted(by: {$1.creationDate > $0.creationDate}) //datos de ejemplos
-	
+	@State private var createNewTask: Bool = false
 	
 	///Animation namespace
 	@Namespace private var animation //MARK: Es normalmente usado cuando se quieren crear animaciones entre vistas o cambios de estados
@@ -35,6 +35,18 @@ struct Home: View {
 			}
 		})
 		.vSpacing(.top)
+		//MARK: Button
+		.overlay(alignment: .bottomTrailing){
+			Button(action:
+					{createNewTask.toggle()
+				   }, label: {
+				Image(systemName: "plus")
+					.fontWeight(.semibold)
+					.foregroundStyle(.white)
+					.frame(width: 55, height: 55, alignment: .center)
+					.background(.ultraViolet.shadow(.drop(color: .black.opacity(0.25), radius: 5, x: 10, y: 10)), in: .circle )
+			}).padding(10)
+		}
 		.onAppear(perform: {
 			if weekSlider.isEmpty {
 				let currentWeek = Date().fetchWeek()
@@ -50,7 +62,13 @@ struct Home: View {
 				}
 			}
 		})
-			
+		.sheet(isPresented: $createNewTask, content: {
+			NewTask()
+				.presentationDetents([.height(300)])
+				.interactiveDismissDisabled()
+				.presentationCornerRadius(30)
+				.presentationBackground(.BG)
+		})
 		
     }
 	
