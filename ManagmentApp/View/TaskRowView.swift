@@ -3,12 +3,15 @@
 //  ManagmentApp
 //
 //  Created by Montserrat Gomez on 2024-06-25.
-//
+/*
+ SwiftData model conforma de @Obervable lo que significa que podemos usar @Bindable para que los cambios en el model se guarden automaticamente
+ */
 
 import SwiftUI
 
 struct TaskRowView: View {
-	@Binding var task: Task
+//	@Binding var task: Task
+	@Bindable var task: Task
 	
     var body: some View {
 		HStack(alignment: .top, spacing: 15){
@@ -40,7 +43,7 @@ struct TaskRowView: View {
 			}
 			.padding(15)
 			.hSpacing(.leading)
-			.background(task.tint, in: .rect(topLeadingRadius: 15, bottomLeadingRadius: 15))
+			.background(task.tintColor, in: .rect(topLeadingRadius: 15, bottomLeadingRadius: 15))
 			.strikethrough(task.isCompleted, pattern: .solid, color: .gray) //cuando es true
 			.offset(y: -8)
 		}
