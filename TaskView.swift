@@ -46,6 +46,8 @@ struct TaskView: View {
 		}
 		.padding([.vertical, .leading], 15)
 		.padding(.top, 15)
+		
+//		.offset(y: 100)
     }
 }
 

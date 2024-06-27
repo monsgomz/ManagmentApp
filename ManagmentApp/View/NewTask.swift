@@ -9,9 +9,11 @@ import SwiftUI
 
 struct NewTask: View {
 	@Environment(\.dismiss) private var dismiss
+	///Model Context para guardar, actualizar o eliminar registros
+	@Environment(\.modelContext) private var context
 	@State private var taskTitle : String = ""
 	@State private var taskDate: Date = .init()
-	@State private var taskColor:Color = .task1
+	@State private var taskColor:String = "Task1"
 	
     var body: some View {
 		VStack(alignment: .leading, spacing: 15){
@@ -54,12 +56,13 @@ struct NewTask: View {
 						.font(.caption)
 						.foregroundStyle(.gray)
 					
-					let colors: [Color] = [.task1, .task2, .task3, .task4, .task5]
+					let colors: [String] = ["Task1", "Task2", "Task3", "Task4", "Task5"]
+//					let colors: [Color] = [.task1, .task2, .task3, .task4, .task5]
 					
 					HStack(spacing: 0){
 						ForEach(colors, id: \.self) { color in
 							Circle()
-								.fill(color)
+								.fill(Color(color))
 								.frame(width: 20, height: 20, alignment: .center)
 								.background(content: {
 									Circle()
@@ -84,7 +87,9 @@ struct NewTask: View {
 			
 			Spacer(minLength: 0)
 			
-			Button(action: {}, label: {
+			Button(action: {
+				//saving task
+			}, label: {
 				Text("Create Task")
 					.font(.title3)
 					.fontWeight(.semibold)
@@ -92,7 +97,7 @@ struct NewTask: View {
 					.foregroundStyle(.black)
 					.hSpacing(.center)
 					.padding(.vertical, 12)
-					.background(taskColor, in: .rect(cornerRadius: 10))
+					.background(Color(taskColor), in: .rect(cornerRadius: 10))
 			})
 			.disabled(taskTitle == "")
 			.opacity(taskTitle == "" ? 0.5 : 1)
