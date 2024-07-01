@@ -12,6 +12,8 @@ import SwiftUI
 struct TaskRowView: View {
 //	@Binding var task: Task
 	@Bindable var task: Task
+	///Model context
+	@Environment(\.modelContext) private var context
 	
     var body: some View {
 		HStack(alignment: .top, spacing: 15){
@@ -45,7 +47,16 @@ struct TaskRowView: View {
 			.hSpacing(.leading)
 			.background(task.tintColor, in: .rect(topLeadingRadius: 15, bottomLeadingRadius: 15))
 			.strikethrough(task.isCompleted, pattern: .solid, color: .gray) //cuando es true
+			.contextMenu(menuItems: {
+				Button(role: .destructive){
+					context.delete(task)
+				} label: {
+					Text("Delete Task")
+				}
+				
+			})
 			.offset(y: -8)
+			
 		}
 		
     }

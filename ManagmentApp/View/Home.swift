@@ -33,9 +33,9 @@ struct Home: View {
 				.hSpacing(.center)
 				.vSpacing(.center)
 			}
-			.overlay {
-				ContentUnavailableView("No Tasks yet", systemImage: "tray.fill", description: Text("Add tasks to start"))
-			}
+//			.overlay {
+//				ContentUnavailableView("No Tasks yet", systemImage: "tray.fill", description: Text("Add tasks to start"))
+//			}
 		})
 		.vSpacing(.top)
 		//MARK: Button

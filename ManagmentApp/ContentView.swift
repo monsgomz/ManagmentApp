@@ -16,7 +16,7 @@ struct ContentView: View {
 				.preferredColorScheme(.light)
 				
         }
-//        .padding()
+
     }
 }
 

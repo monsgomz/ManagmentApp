@@ -15,7 +15,7 @@ struct TaskView: View {
 	
 	init(currentDate: Binding<Date>) {
 		self._currentDate = currentDate //MARK: Revisar que es _
-		///Prdicado
+		///Predicado
 		let calendar = Calendar.current
 		let startOfDate = calendar.startOfDay(for: currentDate.wrappedValue)
 		let endOfDate = calendar.date(byAdding: .day, value: 1, to: startOfDate)!
@@ -43,11 +43,18 @@ struct TaskView: View {
 					}
 				
 			}
+			
 		}
 		.padding([.vertical, .leading], 15)
 		.padding(.top, 15)
-		
-//		.offset(y: 100)
+		.overlay {
+			if tasks.isEmpty {
+				ContentUnavailableView("No Tasks yet", systemImage: "tray.fill", description: Text("Add tasks to start"))
+					.frame(width: 300, height: 300, alignment: .center)
+			}
+		}
+		.offset(y: 250)
+
     }
 }
 

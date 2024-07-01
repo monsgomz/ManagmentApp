@@ -89,6 +89,14 @@ struct NewTask: View {
 			
 			Button(action: {
 				//saving task
+				let task = Task(tasktitle: taskTitle, creationDate: taskDate, tint: taskColor)
+				do {
+					try context.insert(task)
+					dismiss()
+				} catch {
+					print(error.localizedDescription)
+				}
+				
 			}, label: {
 				Text("Create Task")
 					.font(.title3)
