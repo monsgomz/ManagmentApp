@@ -3,6 +3,7 @@
 
 This is a task management application designed to help users efficiently organize and manage their tasks. Built using Swift, SwiftData, and SwiftUI, the app offers a modern and intuitive user experience, making task management seamless and effective.
 
+![Managment](managmentapp.png)
 
 ## Features
 
